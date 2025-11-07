@@ -6,14 +6,16 @@ public enum elements
     neutro,
     Agua,
     fuego,
-    planta
 }
-public class SlimeController : MonoBehaviour
+public class SlimeController : Singleton<SlimeController>
 {
     //variables
     [SerializeField] elements elementState;
-    [SerializeField] float speed = 10f;
     [SerializeField] SpriteRenderer sp;
+
+    [Header("Movement")]
+    [SerializeField] float speed = 10f;
+    Vector3 move;
 
     [Header("Jump")]
     [SerializeField] float jumpForce = 200f;
@@ -26,10 +28,25 @@ public class SlimeController : MonoBehaviour
     [SerializeField] float groundCheckerCastDistance;
     [SerializeField] LayerMask groundLayer;
 
+    //properties
+    public elements CurrentElement { get => elementState;}
+    protected override bool persistent => false;
+
     //methods
+
+    private void OnEnable()
+    {
+        InputManager.OnMove += Move;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.OnMove -= Move;
+    }
+
     private void Update()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
+        transform.position += move * speed * Time.deltaTime;
 
         if (!isGrounded() && !isJumping)
         {
@@ -47,6 +64,10 @@ public class SlimeController : MonoBehaviour
         }
     }
 
+    void Move(Vector2 _move)
+    {
+        move = new Vector3(_move.x, 0);
+    }
 
     public void SwitchElement(elements element)
     {
@@ -56,10 +77,6 @@ public class SlimeController : MonoBehaviour
         {
             case elements.neutro:
                 sp.color = Color.white;
-                break;
-
-            case elements.planta:
-                sp.color = Color.green;
                 break;
 
             case elements.fuego: 
