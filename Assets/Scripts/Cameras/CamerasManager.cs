@@ -3,6 +3,7 @@ using UnityEngine;
 public class CamerasManager : MonoBehaviour
 {
     [SerializeField] GameObject[] cameras;
+    [SerializeField] Transform[] Positions;
 
 
     private void OnEnable()
@@ -23,6 +24,7 @@ public class CamerasManager : MonoBehaviour
             if(i == index)
             {
                 cameras[i].gameObject.SetActive(true);
+                SlimeController.instance.transform.position = Positions[i].transform.position;
             }
             else
             {

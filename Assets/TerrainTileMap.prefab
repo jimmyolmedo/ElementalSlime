@@ -217,6 +217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3515827999178676495, guid: f3d0761ece71ca44c80702007929012b, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4310967192947669340, guid: f3d0761ece71ca44c80702007929012b, type: 3}
       propertyPath: m_Name
       value: World
@@ -231,7 +235,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3417632105910723381, guid: f3d0761ece71ca44c80702007929012b, type: 3}
   m_PrefabInstance: {fileID: 3690590955618087676}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7385309538933383096
+--- !u!114 &6396306133691524049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
