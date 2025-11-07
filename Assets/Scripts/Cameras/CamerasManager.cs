@@ -5,6 +5,15 @@ public class CamerasManager : MonoBehaviour
     [SerializeField] GameObject[] cameras;
 
 
+    private void OnEnable()
+    {
+        ZoneManager.OnChangeZone += ChangeCamera;
+    }
+
+    private void OnDisable()
+    {
+        ZoneManager.OnChangeZone -= ChangeCamera;
+    }
 
 
     void ChangeCamera(int index)
